@@ -1,63 +1,47 @@
-set +e
-
-alias ll='ls -ltr'
-alias lls='ls -lSr'
-
-if [[ ! -z "$(type kubectl)" ]]; then
-  alias k=kubectl
-fi
-
-alias gs='git status'
+# set +e
 
 # TODO: go to https://stackoverflow.com/questions/68605927/how-can-i-change-path-variable-in-zsh an look for 'typeset -aU path'
-export PATH=$PATH:~/.composer/vendor/bin
+[ -f $HOME/.composer/vendor/bin ] && PATH=$PATH:$HOME/.composer/vendor/bin
 
-if [[ -d "$HOME/bin" ]]; then
-    export PATH="$PATH:$HOME/bin"
-fi
+[ -d "$HOME/bin" ] && PATH="$PATH:$HOME/bin"
 
-if [[ -d "$HOME/git-log2json" ]]; then
-    export PATH="$PATH:$HOME/git-log2json"
-fi
+log2json_dir="$HOME/git-log2json" && [ -d "$log2json_dir" ] && PATH="$PATH:$log2json_dir"
 
 # Activate direnv
-if [[ ! -z "$(type direnv)" ]]; then
-  eval "$(direnv hook zsh)"
-fi
+[ ! -z "$(type direnv)" ] && eval "$(direnv hook zsh)"
 
 # Activate thefuck
-if [[ ! -z "$(type fuck)" ]]; then
-  eval "$(thefuck --alias)"
-  alias f=fuck
-fi 
+[ ! -z "$(type fuck)" ] && eval "$(thefuck --alias)" && alias f=fuck
 
+# Rust
+rust_init="$HOME/.cargo/env" [ -e "$rust_init" ] && source "$rust_init"
+
+# Homebrew Ruby
+ruby_dir="/usr/local/opt/ruby/bin" && [ -e "$ruby_dir" ] && PATH="$ruby_dir:$PATH"
+
+# Datagator
+DATAGATOR_PATH=$HOME/Yes/datagator/bin && [ -x "$DATAGATOR_PATH/dg" ] && PATH="$PATH:$DATAGATOR_PATH"
+
+
+### ALIASES
+
+
+idea_dir="/Applications/IntelliJ IDEA.app/Contents/MacOS" && [ -d "$idea_dir" ] && PATH="$PATH:$idea_dir"
+idea_cmd="$(which idea)"
+idea_log="$HOME/.idea.console.log"
+[ ! -z "$idea_cmd" ] && \
+  alias idea="echo 'idea logging to $idea_log' ; (\"$idea_cmd\" 2>&1) >> \"$idea_log\" &"
+
+[ ! -z "$(type kubectl)" ] && alias k=kubectl
+dropbox_dir="$HOME/Library/CloudStorage/CloudMounter-CarlSchuyler" && [ -d "$dropbox_dir" ] && alias cdd="cd \"$dropbox_dir\""
+alias gs='git status'
+alias ll='ls -ltr'
+alias llr='ls -ltr'
+alias lls='ls -lSr'
+alias lls='ls -lSr'
 alias w='curl -s wttr.in/Superior,CO'
 alias w2='curl -s v2.wttr.in/Superior,CO'
 alias wmoon='curl -s wttr.in/moon'
 
-# TODO: go to https://stackoverflow.com/questions/68605927/how-can-i-change-path-variable-in-zsh an look for ‘typeset -aU path’
-export PATH="$PATH:~/.composer/vendor/bin"
-
-alias llr='ls -ltr'
-alias lls='ls -lSr'
-
-alias cdd='dropbox_dir="$HOME/Library/CloudStorage/CloudMounter-CarlSchuyler"; cd "$dropbox_dir"'
-
-export PATH="$PATH:/Applications/IntelliJ IDEA.app/Contents/MacOS"
-
-if [[ ! -z "$(type gng)" ]]; then
-  alias gw=gng
-fi
-
-#alias idea='(/Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea 2>&1) >> ~/.idea.console.log &'
-
-# Rust
-if [[ -e "$HOME/.cargo/env" ]]; then
-	. "$HOME/.cargo/env"
-fi
-
-
-# Homebrew Ruby
-if [[ -e "/usr/local/opt/ruby/bin" ]]; then
-	export PATH="/usr/local/opt/ruby/bin:$PATH"
-fi
+# Gdub is no more, long live gng
+[ ! -z "$(type gng)" ] && alias gw=gng
