@@ -30,7 +30,7 @@ idea_dir="/Applications/IntelliJ IDEA.app/Contents/MacOS" && [ -d "$idea_dir" ] 
 idea_cmd="$(which idea)"
 idea_log="$HOME/.idea.console.log"
 [ ! -z "$idea_cmd" ] && \
-  alias idea="echo 'idea logging to $idea_log' ; (\"$idea_cmd\" 2>&1) >> \"$idea_log\" &"
+  alias idea="echo 'idea logging to $idea_log' ; (\"$idea_cmd\" 2>&1) >> \"$idea_log\" &!"
 
 [ ! -z "$(type kubectl)" ] && alias k=kubectl
 dropbox_dir="$HOME/Library/CloudStorage/CloudMounter-CarlSchuyler" && [ -d "$dropbox_dir" ] && alias cdd="cd \"$dropbox_dir\""
