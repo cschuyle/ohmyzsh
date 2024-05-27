@@ -8,10 +8,10 @@
 log2json_dir="$HOME/git-log2json" && [ -d "$log2json_dir" ] && PATH="$PATH:$log2json_dir"
 
 # Activate direnv
-[ ! -z "$(type direnv)" ] && eval "$(direnv hook zsh)"
+[ ! "$(type direnv)" ] && eval "$(direnv hook zsh)"
 
 # Activate thefuck
-[ ! -z "$(type fuck)" ] && eval "$(thefuck --alias)" && alias f=fuck
+[ ! "$(type fuck)" ] && eval "$(thefuck --alias)" && alias f=fuck
 
 # Rust
 rust_init="$HOME/.cargo/env" [ -e "$rust_init" ] && source "$rust_init"
@@ -43,5 +43,11 @@ alias w='curl -s wttr.in/Superior,CO'
 alias w2='curl -s v2.wttr.in/Superior,CO'
 alias wmoon='curl -s wttr.in/moon'
 
+export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
+
+export PATH="/Users/cschuyle/Yew/datagator/bin:$PATH"
+
+
 # Gdub is no more, long live gng
 [ ! -z "$(type gng)" ] && alias gw=gng
+
