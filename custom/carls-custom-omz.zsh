@@ -22,15 +22,7 @@ ruby_dir="/usr/local/opt/ruby/bin" && [ -e "$ruby_dir" ] && PATH="$ruby_dir:$PAT
 # Datagator
 DATAGATOR_PATH=$HOME/Yes/datagator/bin && [ -x "$DATAGATOR_PATH/dg" ] && PATH="$PATH:$DATAGATOR_PATH"
 
-
 ### ALIASES
-
-
-idea_dir="/Applications/IntelliJ IDEA.app/Contents/MacOS" && [ -d "$idea_dir" ] && PATH="$PATH:$idea_dir"
-idea_cmd="$(which idea)"
-idea_log="$HOME/.idea.console.log"
-[ ! -z "$idea_cmd" ] && \
-  alias idea="echo 'idea logging to $idea_log' ; (\"$idea_cmd\" 2>&1) >> \"$idea_log\" &!"
 
 [ ! -z "$(type kubectl)" ] && alias k=kubectl
 dropbox_dir="$HOME/Library/CloudStorage/CloudMounter-CarlSchuyler" && [ -d "$dropbox_dir" ] && alias cdd="cd \"$dropbox_dir\""
@@ -47,6 +39,8 @@ export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
 
 export PATH="/Users/cschuyle/Yew/datagator/bin:$PATH"
 
+[[ -x "/Applications/IntelliJ IDEA.app/Contents/MacOS/idea" ]] && \
+idea() { /Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea $* &> "$HOME/.IntelliJ-Idea.log" &| }
 
 # Gdub is no more, long live gng
 [ ! -z "$(type gng)" ] && alias gw=gng
