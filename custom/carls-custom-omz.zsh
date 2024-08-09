@@ -14,18 +14,24 @@ log2json_dir="$HOME/git-log2json" && [ -d "$log2json_dir" ] && PATH="$PATH:$log2
 [ ! "$(type fuck)" ] && eval "$(thefuck --alias)" && alias f=fuck
 
 # Rust
-rust_init="$HOME/.cargo/env" [ -e "$rust_init" ] && source "$rust_init"
+rust_init="$HOME/.cargo/env" 
+[[ -e "$rust_init" ]] && source "$rust_init"
 
 # Homebrew Ruby
 ruby_dir="/usr/local/opt/ruby/bin" && [ -e "$ruby_dir" ] && PATH="$ruby_dir:$PATH"
 
 # Datagator
-DATAGATOR_PATH=$HOME/Yes/datagator/bin && [ -x "$DATAGATOR_PATH/dg" ] && PATH="$PATH:$DATAGATOR_PATH"
+datagator_path="$HOME/Yew/datagator/bin"
+[[ -d "$datagator_path" ]] && export PATH="$datagator_path:$PATH"
 
 ### ALIASES
 
-[ ! -z "$(type kubectl)" ] && alias k=kubectl
-dropbox_dir="$HOME/Library/CloudStorage/CloudMounter-CarlSchuyler" && [ -d "$dropbox_dir" ] && alias cdd="cd \"$dropbox_dir\""
+[[ ! -z "$(type kubectl)" ]] && alias k=kubectl
+
+dropbox_dir="$HOME/Library/CloudStorage/CloudMounter-CarlSchuyler"
+[[ -d "$dropbox_dir" ]] && alias cdd="cd \"$dropbox_dir\""
+
+
 alias gs='git status'
 alias ll='ls -ltr'
 alias llr='ls -ltr'
@@ -35,13 +41,19 @@ alias w='curl -s wttr.in/Superior,CO'
 alias w2='curl -s v2.wttr.in/Superior,CO'
 alias wmoon='curl -s wttr.in/moon'
 
-export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
+idea_home="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
+[[ -d "$idea_home ]] && export PATH="$idea_home:$PATH"
 
-export PATH="/Users/cschuyle/Yew/datagator/bin:$PATH"
 
-[[ -x "/Applications/IntelliJ IDEA.app/Contents/MacOS/idea" ]] && \
-idea() { /Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea $* &> "$HOME/.IntelliJ-Idea.log" &| }
+#[[ -x "/Applications/IntelliJ IDEA.app/Contents/MacOS/idea" ]] && \
+#idea() { /Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea $* &> "$HOME/.IntelliJ-Idea.log" &| }
 
 # Gdub is no more, long live gng
-[ ! -z "$(type gng)" ] && alias gw=gng
+[[ ! -z "$(type gng)" ]] && alias gw=gng
+
+### WORK
+
+JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home
+[[ -d "$JAVA_HOME" ]] && export JAVA_HOME
+
 
