@@ -41,12 +41,12 @@ alias w='curl -s wttr.in/Superior,CO'
 alias w2='curl -s v2.wttr.in/Superior,CO'
 alias wmoon='curl -s wttr.in/moon'
 
-idea_home="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
-[[ -d "$idea_home ]] && export PATH="$idea_home:$PATH"
+# IntelliJ's idea spews to the console. The wrapper function is cleaner.
+# idea_home="/Applications/IntelliJ IDEA.app/Contents/MacOS"
+# [[ -d "$idea_home" ]] && export PATH="$idea_home:$PATH"
 
-
-#[[ -x "/Applications/IntelliJ IDEA.app/Contents/MacOS/idea" ]] && \
-#idea() { /Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea $* &> "$HOME/.IntelliJ-Idea.log" &| }
+[[ -x "/Applications/IntelliJ IDEA.app/Contents/MacOS/idea" ]] && \
+idea() { /Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea $* &> "$HOME/.IntelliJ-Idea.log" &| }
 
 # Gdub is no more, long live gng
 [[ ! -z "$(type gng)" ]] && alias gw=gng
@@ -55,5 +55,3 @@ idea_home="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
 
 JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home
 [[ -d "$JAVA_HOME" ]] && export JAVA_HOME
-
-
