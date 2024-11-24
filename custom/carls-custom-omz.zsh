@@ -51,7 +51,7 @@ idea() { /Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea $* &> "$HOME/.Inte
 # Gdub is no more, long live gng
 [[ ! -z "$(type gng)" ]] && alias gw=gng
 
-// Handy aliases to make a filename-compatible timestamp
+# Handy aliases to make a filename-compatible timestamp
 
 alias datei='TZ=America/Denver date -Idate | tr : - | pbcopy'
 alias dateih='TZ=America/Denver date -Ihours | tr : - | pbcopy'
